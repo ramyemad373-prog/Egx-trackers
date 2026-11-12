@@ -20,6 +20,14 @@ jobs:
         with:
           channel: 'stable'
           
+      - name: Generate Android configuration if missing
+        run: |
+          if [ ! -d "android" ]; then
+            flutter create . --org com.egx.tracker --project-name egx_tracker --platforms=android
+          else
+            flutter pub upgrade
+          fi
+          
       - name: Get dependencies
         run: flutter pub get
         
